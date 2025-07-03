@@ -25,4 +25,11 @@ public class StringCalculatorValidator {
         int result = calculator.add("1,2");
         assertEquals(3, result);
     }
+
+    // Handle any amount of numbers
+    @Test
+    void validateAnyAmountOfNumberInput() {
+        int result = calculator.add("1,2,3,4,5");
+        assertEquals(15, result);
+    }
 }
