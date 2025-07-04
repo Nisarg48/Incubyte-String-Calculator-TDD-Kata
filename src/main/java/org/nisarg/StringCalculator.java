@@ -1,5 +1,8 @@
 package org.nisarg;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StringCalculator {
 
     // A string of comma-separated numbers
@@ -10,8 +13,19 @@ public class StringCalculator {
 
         String[] nums = numbers.split("[\n,]");
         int sum = 0;
+        List<String> negativeNumbers = new ArrayList<String>();
+
         for(String num : nums) {
-            sum += Integer.parseInt(num);
+            if(Integer.parseInt(num) < 0) {
+                negativeNumbers.add(num);
+            }
+            else {
+                sum += Integer.parseInt(num);
+            }
+        }
+
+        if(!negativeNumbers.isEmpty()) {
+            throw new RuntimeException("negative numbers not allowed " + negativeNumbers);
         }
 
         return sum;

@@ -68,4 +68,14 @@ public class StringCalculatorValidator {
             calculator.DelimiterWithNumbers("//;\n");
         });
     }
+
+    // Handle string with negative numbers
+    @Test
+    void validateStringWithNegativeNumbers() {
+        RuntimeException message =  assertThrows(RuntimeException.class, () -> {
+            calculator.add("1,-1,2,-2,3,-3");
+        });
+
+        System.out.println(message.getMessage());
+    }
 }
