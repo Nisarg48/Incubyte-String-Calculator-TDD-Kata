@@ -32,4 +32,11 @@ public class StringCalculatorValidator {
         int result = calculator.add("1,2,3,4,5");
         assertEquals(15, result);
     }
+
+    // Handle new lines between numbers
+    @Test
+    void validateInputWithNewLine() {
+        int result = calculator.add("1\n2,3");
+        assertEquals(6, result);
+    }
 }
