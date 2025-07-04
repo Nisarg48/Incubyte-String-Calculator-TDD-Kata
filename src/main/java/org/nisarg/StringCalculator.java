@@ -16,11 +16,14 @@ public class StringCalculator {
         List<String> negativeNumbers = new ArrayList<String>();
 
         for(String num : nums) {
-            if(Integer.parseInt(num) < 0) {
+            int n = Integer.parseInt(num);
+            if(n < 0) {
                 negativeNumbers.add(num);
             }
             else {
-                sum += Integer.parseInt(num);
+                if(n < 1000) {
+                    sum += n;
+                }
             }
         }
 

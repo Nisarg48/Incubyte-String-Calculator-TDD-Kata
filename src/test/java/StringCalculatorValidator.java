@@ -78,4 +78,11 @@ public class StringCalculatorValidator {
 
         System.out.println(message.getMessage());
     }
+
+    // Handle number bigger than 1000
+    @Test
+    void validateNumberGreaterThan1000() {
+        int result = calculator.add("2,1001,1");
+        assertEquals(3, result);
+    }
 }
