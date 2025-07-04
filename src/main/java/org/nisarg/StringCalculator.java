@@ -16,4 +16,34 @@ public class StringCalculator {
 
         return sum;
     }
+
+    // A String with Delimiter and Numbers
+    public int DelimiterWithNumbers(String numbers) {
+        if(numbers.isEmpty()) {
+            return 0;
+        }
+
+        String delimiter = "[,\n]";
+        String inputNumbers = numbers;
+
+        if(numbers.startsWith("//")) {
+            String[] input = numbers.split("\n");
+            if(input.length < 2) {
+                throw new IllegalArgumentException("Invalid Input.");
+            }
+
+            delimiter = input[0].substring(2);
+            inputNumbers = input[1];
+        }
+        int sum = 0;
+        String[] nums = inputNumbers.split(delimiter);
+
+        for(String num : nums) {
+            if(!num.trim().isEmpty()) {
+                sum += Integer.parseInt(num);
+            }
+        }
+
+        return sum;
+    }
 }

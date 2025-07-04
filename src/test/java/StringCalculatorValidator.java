@@ -39,4 +39,33 @@ public class StringCalculatorValidator {
         int result = calculator.add("1\n2,3");
         assertEquals(6, result);
     }
+
+    // Handle delimiter separated numbers
+    @Test
+    void validateDelimiterSeperatedNumbers() {
+        int result = calculator.DelimiterWithNumbers("//;\n1;2");
+        assertEquals(3, result);
+    }
+
+    // Handle default delimiter separated numbers
+    @Test
+    void validateDefaultDelimiterSeperatedNumbers() {
+        int result = calculator.DelimiterWithNumbers("1\n2,3");
+        assertEquals(6, result);
+    }
+
+    // Handle empty string of numbers
+    @Test
+    void validateEmptyStringNumbers() {
+        int result = calculator.DelimiterWithNumbers("");
+        assertEquals(0, result);
+    }
+
+    // Handle string with delimiter and empty numbers
+    @Test
+    void validateWithDelimiterWithoutNumbersInput() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            calculator.DelimiterWithNumbers("//;\n");
+        });
+    }
 }
