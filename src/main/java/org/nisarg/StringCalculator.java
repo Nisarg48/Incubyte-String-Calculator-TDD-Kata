@@ -2,6 +2,8 @@ package org.nisarg;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringCalculator {
 
@@ -61,6 +63,36 @@ public class StringCalculator {
             }
         }
 
+        return sum;
+    }
+
+    public int DelimiterWithAnyLength(String numbers) {
+        if(numbers.isEmpty()) {
+            return 0;
+        }
+
+        String delimiter = "[,\n]";
+        String inputNumbers = numbers;
+
+        if(numbers.startsWith("//")) {
+            Matcher matcher = Pattern.compile("//\\[(.+)]\\n(.*)").matcher(numbers);
+            if (matcher.matches()) {
+                delimiter = matcher.group(1);
+                inputNumbers = matcher.group(2);
+            }
+            else {
+                throw new IllegalArgumentException("Invalid Input.");
+            }
+        }
+
+        int sum = 0;
+        String[] nums = inputNumbers.split(Pattern.quote(delimiter));
+
+        for(String num : nums) {
+            if(!num.trim().isEmpty()) {
+                sum += Integer.parseInt(num);
+            }
+        }
         return sum;
     }
 }

@@ -85,4 +85,11 @@ public class StringCalculatorValidator {
         int result = calculator.add("2,1001,1");
         assertEquals(3, result);
     }
+
+    // Handle delimiter of any length
+    @Test
+    void validateDelimiterWithAnyLength() {
+        int result = calculator.DelimiterWithAnyLength("//[***]\n1***2***3");
+        assertEquals(6, result);
+    }
 }
