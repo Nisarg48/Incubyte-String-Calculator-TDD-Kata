@@ -95,4 +95,43 @@ public class StringCalculator {
         }
         return sum;
     }
+
+    public int addWithMultipleCustomDelimiter(String numbers) {
+        if (numbers == null || numbers.isEmpty()) {
+            return 0;
+        }
+
+        String delimiter = ",|\n"; // default
+        String inputNumbers = numbers;
+
+        if (numbers.startsWith("//")) {
+            Matcher matcher = Pattern.compile("//(\\[(.+?)])+\\n(.*)", Pattern.DOTALL).matcher(numbers);
+            if (matcher.find()) {
+                String delimiterPart = numbers.substring(2, numbers.indexOf("\n"));
+                inputNumbers = numbers.substring(numbers.indexOf("\n") + 1);
+
+                Matcher delimMatcher = Pattern.compile("\\[(.+?)\\]").matcher(delimiterPart);
+                List<String> delimList = new ArrayList<>();
+
+                while (delimMatcher.find()) {
+                    delimList.add(Pattern.quote(delimMatcher.group(1)));
+                }
+
+                delimiter = String.join("|", delimList);
+            } else {
+                throw new IllegalArgumentException("Invalid input.");
+            }
+        }
+
+        int sum = 0;
+        String[] nums = inputNumbers.split(delimiter);
+
+        for (String num : nums) {
+            if (!num.trim().isEmpty()) {
+                sum += Integer.parseInt(num.trim());
+            }
+        }
+
+        return sum;
+    }
 }

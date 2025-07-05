@@ -92,4 +92,18 @@ public class StringCalculatorValidator {
         int result = calculator.DelimiterWithAnyLength("//[***]\n1***2***3");
         assertEquals(6, result);
     }
+
+    // Handle multiple custom delimiter
+    @Test
+    void validateCustomDelimiter() {
+        int result = calculator.addWithMultipleCustomDelimiter("//[*][%]\n1*2%3");
+        assertEquals(6, result);
+    }
+
+    // Handle multiple delimiters with length longer than one char
+    @Test
+    void validateCustomDelimiterLengthLongerThanOne() {
+        int result = calculator.addWithMultipleCustomDelimiter("//[**][%]\n1**2%3");
+        assertEquals(6, result);
+    }
 }
